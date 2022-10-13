@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>Web Search</title>
+</head>
+<body>
+  <main class="main">
+    <div class="container-title">
+      <h1 class="title">Character Search</h1>
+    </div>
+    <div class="container">
+      <!--SUBMIT CARD-->
+      <div class="form-card">
+        <form class="form">
+          <div class="input-box">
+            <label for="name">
+              Name
+              <input type="text" id="name-input" class="input-form" autocomplete="off" placeholder="M. Fatih Rabbani">
+            </label>
+            <p class="error-message" id="error-name">
+              <!-- *Name cannot contain number and uncommon symbol -->
+            </p>
+          </div>
+          <div class="input-box">
+            <label for="nim">
+              NIM
+              <input id="nim-input" class="input-form" autocomplete="off" placeholder="2107113604" min="0">
+            </label>
+            <p class="error-message" id="error-nim">
+              <!-- *NIM cannot contain alphabets and special character -->
+            </p>
+          </div>
+          <button id="btn" class="btn">Search</button>
+        </form> 
+      </div>
+
+      <!--OUTPUT CARD-->
+      <div class="form-card">
+        <div class="output-form">
+          <h3 class="output-title-form" id="searching">Searching</h3>
+
+          <div class="flex">
+
+            <div class="output-box">
+              <div id="name-final-output">
+  
+              </div>
+              
+            </div>
+            <div class='box-search' id="name-output">
+  
+            </div>
+          </div>
+          <div class="character-status-box">
+            Status:  
+            <p id="character-status-name"></p>
+          </div>
+          
+          <div class="flex">
+
+            <div class="output-box">
+              <div id="nim-final-output">
+                
+              </div>
+            </div>
+            <div class="box-search" id="nim-output">
+
+            </div>
+          </div>
+          <div class="character-status-box">
+            Status: 
+            <p id="character-status-nim"></p>
+          </div>
+        </div>
+        <div class="output-status">
+          <h4 class="title-status">
+            Status : 
+          </h4>
+          <!-- <div> -->
+            <div class="status-desc">
+              Name <div id="status-name" class="icon icon-idle">!</div>
+            </div>
+            <div class="status-desc">
+              NIM <div id="status-nim" class="icon icon-idle">!</div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    Created with ❤ to complete UTS Teori Bahasa Automata
+  </footer>
+
+  <script src="./js/index.js"></script>
+  <script src="./js/inputChecker.js"></script>
+  <!-- <script src="./js/status.js"></script> -->
+</body>
+</html>

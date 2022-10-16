@@ -135,6 +135,8 @@ onSubmit.addEventListener('click', (e) => {
   nimOutput.innerText = '';
   nameFinal.innerText = '';
   nimFinal.innerText = '';
+  nameCharStatus.innerText = '';
+  nimCharStatus.innerText = '';
 
   // reset status
   isNameCompleted = false;

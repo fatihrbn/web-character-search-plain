@@ -17,6 +17,7 @@ const nimCharStatus = document.getElementById('character-status-nim');
 
 let isNameCompleted = false;
 let isNimCompleted = false;
+let isRunning = false;
 
 
 // function to set a delay
@@ -36,6 +37,7 @@ const checkStatus = () => {
     nameStatus.classList.add('icon-complete');
     nameStatus.classList.remove('icon-idle');
     nameCharStatus.innerText = 'string accepted';
+    nameFinal.style.color = 'green';
   } else {
     nameStatus.classList.add('icon-idle');
     nameStatus.classList.remove('icon-complete');
@@ -45,6 +47,7 @@ const checkStatus = () => {
     nimStatus.classList.add('icon-complete');
     nimStatus.classList.remove('icon-idle');
     nimCharStatus.innerText = 'string accepted';
+    nimFinal.style.color = 'green';
   } else {
     nimStatus.classList.add('icon-idle');
     nimStatus.classList.remove('icon-complete');
@@ -70,10 +73,12 @@ const generateNameChar = async (nameInput, nimInput, milis) => {
 
       if(nameInput[i] === nameCharList[j]) {
         nameFinal.innerText += nameCharList[j];
+        nameOutput.style.color = 'green';
         nameCharStatus.style.color = 'green';
         nameCharStatus.innerText = 'character accepted';
         await delay(milis);
         nameCharStatus.innerText = '';
+        nameOutput.style.color = 'black';
         break;
       } else {
         nameOutput.style.color = 'red';
@@ -88,13 +93,18 @@ const generateNameChar = async (nameInput, nimInput, milis) => {
   
   if(nameInput.length != 0 && nameInput.length === nameFinal.innerText.length) {
     isNameCompleted = true;
+    nameCharStatus.innerText = '';
+    await delay(milis);
     checkStatus();
+    isRunning = false;
   }
+  await delay(milis/2);
   generateNimChar(nimInput, milis);
 }
 
 // function to generate nim 
 const generateNimChar = async (nimInput, milis) => {
+  isRunning = true;
   for(let i = 0; i < nimInput.length; i++) {
     for(let j = 0; j < numbers; j++) {
       nimOutput.innerText = numbers[j];
@@ -102,9 +112,11 @@ const generateNimChar = async (nimInput, milis) => {
 
       if(nimInput[i] === numbers[j]) {
         nimFinal.innerText += numbers[j];
+        nimOutput.style.color = 'green';  
         nimCharStatus.style.color = 'green';
         nimCharStatus.innerText = 'character accepted';
         await delay(milis);
+        nimOutput.style.color = 'black'
         nimCharStatus.innerText = '';
         break;
       } else {
@@ -119,31 +131,39 @@ const generateNimChar = async (nimInput, milis) => {
   }
   if(nimInput.length != 0 && nimInput.length === nimFinal.innerText.length) {
     isNimCompleted = true;
+    nimCharStatus.innerText = '';
+    await delay(milis);
+    isRunning = false;
     checkStatus();
   }
 }
 
 // onClick or onSubmit button
 const onSubmit = document.getElementById('btn');
-onSubmit.addEventListener('click', (e) => {
+onSubmit.addEventListener('click', async (e) => {
   e.preventDefault();
-  const nameInput = document.getElementById('name-input').value;
-  const nimInput = document.getElementById('nim-input').value;
+  if(!isRunning) { 
+    const nameInput = document.getElementById('name-input').value;
+    const nimInput = document.getElementById('nim-input').value;
 
-  // reset output value 
-  nameOutput.innerText = '';
-  nimOutput.innerText = '';
-  nameFinal.innerText = '';
-  nimFinal.innerText = '';
-  nameCharStatus.innerText = '';
-  nimCharStatus.innerText = '';
-
-  // reset status
-  isNameCompleted = false;
-  isNimCompleted = false;
-  checkStatus();
-
-  generateNameChar(nameInput, nimInput, 1000);
-
+    isRunning = true;
+    
+    // reset output value 
+    nameOutput.innerText = '';
+    nimOutput.innerText = '';
+    nameFinal.innerText = '';
+    nimFinal.innerText = '';
+    nameCharStatus.innerText = '';
+    nimCharStatus.innerText = '';
+    
+    // reset status
+    isNameCompleted = false;
+    isNimCompleted = false;
+    checkStatus();
+    
+    await delay(200);
+    generateNameChar(nameInput, nimInput, 1000);
+  } else {
+    alert('Please wait until the program is done or refresh the website to continue');
+  }
 })
-

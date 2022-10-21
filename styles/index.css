@@ -38,7 +38,7 @@ button {
 }
 
 .container-title {
-  margin-bottom: 72px;
+  margin-bottom: 60px;
   margin-top: -50px;
   width: 100%;
   max-width: 1000px;
@@ -47,10 +47,18 @@ button {
   align-items: center;
   justify-content: center;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
 }
 .title {
   font-weight: 800;
   font-size: 45px;
+}
+
+.title-desc {
+  font-size: 20px;
+  margin-top: 4px;
+  text-align: center;
 }
 
 .main {
@@ -258,18 +266,20 @@ button {
 }
 
 #name-final-output, #nim-final-output {
-  color: green;
   font-weight: 500;
 }
 
 #name-output, #nim-output {
-  /* color: red; */
   font-weight: 500;
 }
 
 @media only screen and (max-width: 768px) {
-  .main {
-    height: 100%;
+  .title {
+    font-size: 28px;
+  }
+
+  .title-desc {
+    font-size: 16px;
   }
 
   .container {
@@ -278,6 +288,12 @@ button {
     justify-content: center;
     align-items: center;
     max-width: 400px;
+    margin-bottom: 30px;
+  }
+
+  .container-title {
+    margin-top: 12px;
+    margin-bottom: 40px;
   }
 
   .output-form {
